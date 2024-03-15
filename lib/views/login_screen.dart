@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_mvvm_provider/constant/colors.dart';
 import 'package:flutter_mvvm_provider/routes/name_routes.dart';
 import 'package:flutter_mvvm_provider/utils/common_toast.dart';
+import 'package:flutter_mvvm_provider/view_model/login_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   final Map args;
@@ -25,6 +27,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final loginProvider = Provider.of<LoginProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: secondaryColor,
@@ -62,7 +66,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   // Navigator.pushReplacementNamed(
                   //     context, RoutesName.homeScreen);
 
-                  commonToast("Hello Toast");
+                  Map data = {
+                    "email": "eve.holt@reqres.in",
+                    "password": "cityslicka"
+                  };
+                  loginProvider.userLogin(data);
+                  // loginProvider.createAlbum("title");
                 },
                 child: Text(
                   "Login",
