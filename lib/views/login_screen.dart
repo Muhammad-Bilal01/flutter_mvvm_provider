@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_mvvm_provider/constant/colors.dart';
+import 'package:flutter_mvvm_provider/routes/name_routes.dart';
+import 'package:flutter_mvvm_provider/utils/common_toast.dart';
 
 class LoginScreen extends StatefulWidget {
   final Map args;
@@ -13,8 +17,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    if (widget.args.containsKey('name')) {
-      name = widget.args['name'];
+    if (widget.args.containsKey('title')) {
+      name = widget.args['title'];
     }
     super.initState();
   }
@@ -22,8 +26,52 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(name),
+      appBar: AppBar(
+        backgroundColor: secondaryColor,
+        automaticallyImplyLeading: false,
+        title: Text(
+          "Login",
+          style: TextStyle(color: whiteColor),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Email",
+              ),
+            ),
+            const SizedBox(height: 10),
+            TextFormField(
+              decoration: const InputDecoration(
+                hintText: "Password",
+              ),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: MaterialButton(
+                color: primaryColor,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
+                onPressed: () {
+                  // Navigator.pushReplacementNamed(
+                  //     context, RoutesName.homeScreen);
+
+                  commonToast("Hello Toast");
+                },
+                child: Text(
+                  "Login",
+                  style: TextStyle(color: whiteColor),
+                ),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

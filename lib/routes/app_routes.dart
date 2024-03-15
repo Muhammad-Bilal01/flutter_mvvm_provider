@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_provider/routes/name_routes.dart';
+import 'package:flutter_mvvm_provider/views/home_screen.dart';
 import 'package:flutter_mvvm_provider/views/login_screen.dart';
 import 'package:flutter_mvvm_provider/views/splash_screen.dart';
 
@@ -8,12 +9,17 @@ class AppRoutes {
     switch (setting.name) {
       case RoutesName.splashScreen:
         return MaterialPageRoute(builder: (_) => SplashScreen());
+
+      // Pass argument with name routes
       case RoutesName.loginScreen:
         final Map args = setting.arguments as Map;
         return MaterialPageRoute(
             builder: (_) => LoginScreen(
                   args: args,
                 ));
+
+      case RoutesName.homeScreen:
+        return MaterialPageRoute(builder: (_) => HomeScreen());
 
       // If no routes found
       default:
