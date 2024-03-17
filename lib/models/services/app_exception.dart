@@ -1,8 +1,8 @@
 class AppException implements Exception {
-  final String prefix;
-  final String message;
+  final prefix;
+  final message;
 
-  AppException({this.prefix = "", required this.message});
+  AppException({this.prefix, required this.message});
 
   @override
   String toString() {

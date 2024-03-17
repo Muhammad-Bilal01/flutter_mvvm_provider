@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mvvm_provider/constant/colors.dart';
 import 'package:flutter_mvvm_provider/routes/app_routes.dart';
 import 'package:flutter_mvvm_provider/routes/name_routes.dart';
-import 'package:flutter_mvvm_provider/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/foundation.dart';
 import 'package:flutter_mvvm_provider/models/services/app_exception.dart';
 import 'package:http/http.dart' as http;
 
@@ -10,11 +9,11 @@ abstract class BaseApiServices {
   // get Api
   Future<dynamic> getAPi(String url);
 
-  // delete APi
-  Future<dynamic> deleteAPi(String url, int id);
+  // // delete APi
+  // Future<dynamic> deleteAPi(String url, int id);
 
-  // update Api
-  Future<dynamic> putAPi(String url, int id, dynamic data);
+  // // update Api
+  // Future<dynamic> putAPi(String url, int id, dynamic data);
 }
 
 class NetworkApiServices extends BaseApiServices {
@@ -43,11 +42,13 @@ class NetworkApiServices extends BaseApiServices {
     dynamic responseJson;
 
     try {
-      http.Response response =
-          await http.get(Uri.parse(url)).timeout(const Duration(seconds: 30));
+      http.Response response = await http.get(Uri.parse(url), headers: {
+        "Content-type": "application.json"
+      }).timeout(const Duration(seconds: 30));
+      // print(response.body);
       responseJson = returnApiResponse(response);
     } catch (e) {
-      debugPrint(e.toString());
+      // debugPrint(e.toString());
     }
 
     return responseJson;
@@ -57,27 +58,28 @@ class NetworkApiServices extends BaseApiServices {
   Future postAPi(String url, dynamic data) async {
     dynamic responseJson;
     try {
-      http.Response response =
-          await http.post(Uri.parse(url), body: data).timeout(
-                const Duration(seconds: 20),
-              );
+      http.Response response = await http.post(
+        Uri.parse(url),
+        body: data,
+      );
       responseJson = returnApiResponse(response);
     } catch (e) {
-      debugPrint(e.toString());
+      print(e.toString());
+      // debugPrint(e.toString());
     }
 
     return responseJson;
   }
 
-  @override
-  Future putAPi(String url, int id, data) {
-    // TODO: implement putAPi
-    throw UnimplementedError();
-  }
+  // @override
+  // Future putAPi(String url, int id, data) {
+  //   // TODO: implement putAPi
+  //   throw UnimplementedError();
+  // }
 
-  @override
-  Future deleteAPi(String url, int id) {
-    // TODO: implement deleteAPi
-    throw UnimplementedError();
-  }
+  // @override
+  // Future deleteAPi(String url, int id) {
+  // TODO: implement deleteAPi
+  //   throw UnimplementedError();
+  // }
 }

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_mvvm_provider/constant/colors.dart';
 import 'package:flutter_mvvm_provider/routes/name_routes.dart';
-import 'package:flutter_mvvm_provider/utils/common_toast.dart';
 import 'package:flutter_mvvm_provider/view_model/login_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -63,15 +61,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12)),
                 onPressed: () {
-                  // Navigator.pushReplacementNamed(
-                  //     context, RoutesName.homeScreen);
+                  Navigator.pushReplacementNamed(
+                      context, RoutesName.homeScreen);
 
-                  Map data = {
-                    "email": "eve.holt@reqres.in",
-                    "password": "cityslicka"
-                  };
-                  loginProvider.userLogin(data);
-                  // loginProvider.createAlbum("title");
+                  // Map<String, String> data = {
+                  //   "email": "eve.holt@reqres.in",
+                  //   "password": "cityslicka"
+                  // };
+                  // loginProvider.userLogin(data);
                 },
                 child: Text(
                   "Login",
